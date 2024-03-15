@@ -8,12 +8,15 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import { Offer } from '../../types/offer';
+import { Review } from '../../types/review';
 
 type AppScreenProps = {
-    placesCount: number;
+    offers: Offer[];
+    reviews: Review[];
 }
 
-function App({ placesCount }: AppScreenProps): JSX.Element {
+export default function App({ offers, reviews }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -21,7 +24,7 @@ function App({ placesCount }: AppScreenProps): JSX.Element {
 
           <Route
             path={AppRoute.Root}
-            element={<MainScreen placesCount={placesCount}/>}
+            element={<MainScreen offers={offers}/>}
           />
 
           <Route
@@ -33,16 +36,16 @@ function App({ placesCount }: AppScreenProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesScreen/>
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
           />
 
           <Route
             path={AppRoute.Offer}
-            element={<OfferScreen/>}
+            element={<OfferScreen offers={offers} reviews={reviews}/>}
           />
 
           <Route
@@ -55,5 +58,3 @@ function App({ placesCount }: AppScreenProps): JSX.Element {
     </HelmetProvider>
   );
 }
-
-export default App;
