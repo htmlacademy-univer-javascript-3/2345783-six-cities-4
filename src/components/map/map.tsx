@@ -30,9 +30,16 @@ export default function Map(props: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
+  console.log(offers)
 
   useEffect(() => {
     if (map) {
+      map.eachLayer((layer) => {
+        if (layer.options.pane === 'markerPane') {
+          map.removeLayer(layer);
+        }
+      });
+
       offers.forEach((offer: Offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -48,6 +55,12 @@ export default function Map(props: MapProps): JSX.Element {
       });
     }
   }, [map, offers, activeOfferId]);
+
+  useEffect(() => {
+    if (map) {
+      map.flyTo([offers[0].city.location.latitude, offers[0].city.location.longitude], offers[0].city.location.zoom);
+    }
+  }, [map, offers]);
 
   return (
     <section className={isMainScreen ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
