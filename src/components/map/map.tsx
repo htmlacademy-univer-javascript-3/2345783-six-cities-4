@@ -30,7 +30,6 @@ export default function Map(props: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
-  console.log(offers)
 
   useEffect(() => {
     if (map) {
