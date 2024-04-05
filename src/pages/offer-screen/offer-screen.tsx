@@ -15,7 +15,6 @@ type OfferScreenProps = {
 };
 
 export default function OfferScreen({ offers, reviews }: OfferScreenProps): JSX.Element {
-  console.log("offer screen: ", offers)
   const {id} = useParams();
   const [{isFavorite, isPremium, description, amenities, host,
     images, rating, maxAdults, price, title, type, bedrooms}] = offers.filter((offer) => offer.id.toString() === id);

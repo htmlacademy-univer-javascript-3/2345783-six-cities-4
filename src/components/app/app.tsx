@@ -16,8 +16,7 @@ type AppScreenProps = {
 }
 
 export default function App({ reviews }: AppScreenProps): JSX.Element {
-  let offers = useAppSelector((state)=>state.offers);
-  console.log("app: ", offers)
+  const offers = useAppSelector((state)=>state.offers);
   return (
     <HelmetProvider>
       <BrowserRouter>
