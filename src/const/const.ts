@@ -35,6 +35,8 @@ export enum CitiesName {
 export enum Actions {
   PICK_CITY = 'PICK_CITY',
   FILTER_OFFERS = 'FILTER_OFFERS',
+  LOAD_OFFERS = 'LOAD_OFFERS',
+  SET_STATUS_OFFERS_DATA_LOADING = 'SET_STATUS_OFFERS_DATA_LOADING',
 }
 
 export enum SortingTypes {
@@ -42,6 +44,10 @@ export enum SortingTypes {
   LowToHigh = 'Price: low to high',
   HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
+}
+
+export enum APIRoute {
+  Offers = '/offers',
 }
 
 export const URL_MARKER_DEFAULT =

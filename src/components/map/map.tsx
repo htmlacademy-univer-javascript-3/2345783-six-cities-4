@@ -20,14 +20,13 @@ const currentCustomIcon = new Icon({
 
 type MapProps = {
    offers: Offer[];
-   activeOfferId: number;
+   activeOfferId?: string;
    isMainScreen: boolean;
 }
 
 
 export default function Map(props: MapProps): JSX.Element {
   const {offers, activeOfferId, isMainScreen} = props;
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
