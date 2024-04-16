@@ -1,4 +1,4 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, {AxiosError, AxiosInstance, InternalAxiosRequestConfig} from 'axios';
 import { processErrorHandle } from './process-error-handle';
 import { getToken } from './token';
 
@@ -12,7 +12,7 @@ export const createAPI = (): AxiosInstance => {
   });
 
   api.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    (config: InternalAxiosRequestConfig) => {
       const token = getToken();
 
       if (token && config.headers) {
