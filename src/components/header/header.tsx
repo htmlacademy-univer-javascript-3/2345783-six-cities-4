@@ -66,4 +66,6 @@ function Header(): JSX.Element {
   );
 }
 
-export default React.memo(Header);
+const HeaderMemo = React.memo(Header);
+
+export default HeaderMemo;
