@@ -26,6 +26,9 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersDataLoading = true;
       })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.isOffersDataLoading = false;
+      })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
         state.isOffersDataLoading = false;

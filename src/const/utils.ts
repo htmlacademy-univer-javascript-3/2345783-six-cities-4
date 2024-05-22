@@ -3,9 +3,10 @@ import { SortingTypes } from './const';
 import dayjs from 'dayjs';
 
 const RELEASE_DATE_FORMAT = 'MMMM YYYY';
+const RATING_SCALE = 20;
 
 export function getRatingStars(rating: number): string {
-  return `${20 * rating}%`;
+  return `${RATING_SCALE * rating}%`;
 }
 
 export function humanizeDate(date: string): string {

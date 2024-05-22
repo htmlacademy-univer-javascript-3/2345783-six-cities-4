@@ -17,6 +17,9 @@ export const favoriteOffersData = createSlice({
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
         state.isFavoriteOffersDataLoading = true;
       })
+      .addCase(fetchFavoriteOffersAction.rejected, (state) => {
+        state.isFavoriteOffersDataLoading = false;
+      })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
         state.isFavoriteOffersDataLoading = false;
