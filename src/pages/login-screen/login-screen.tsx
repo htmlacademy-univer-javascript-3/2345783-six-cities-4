@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import {useRef, FormEvent} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {fetchFavoriteOffersAction, loginAction} from '../../store/api-actions';
+import {loginAction} from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
 import { Link } from 'react-router-dom';
 import { validatePassword } from '../../const/utils';
