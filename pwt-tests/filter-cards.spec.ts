@@ -4,7 +4,7 @@ test.describe('Filter Cards by Price and Rating', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:5173'); // go to main page
 
-    await page.waitForSelector('.cities__card'); // wait for cards to load
+    await page.locator('.cities__card').first().waitFor(); // wait for cards to load
 
     const filterMenu = await page.locator('.places__sorting-type').first();
     filterMenu.click(); // click on filters dropout menu
@@ -14,8 +14,8 @@ test.describe('Filter Cards by Price and Rating', () => {
     const filters = await page.locator('.places__option').all();
     await filters[1].click(); // click on filter option
 
-    await page.waitForSelector('.places__found', { state: 'attached' }); // wait for page to reload
-    await page.waitForSelector('.cities__card', { state: 'attached' }); // wait for cards to load
+    await page.locator('.places__found').first().waitFor(); // wait for page to reload
+    await page.locator('.cities__card').first().waitFor(); // wait for cards to load
 
     const cardElements = await page.locator('.cities__card').all(); // get cards
     expect(cardElements.length).toBeGreaterThan(0); // make sure there's at least 1
@@ -35,8 +35,8 @@ test.describe('Filter Cards by Price and Rating', () => {
     const filters = await page.locator('.places__option').all();
     await filters[2].click(); // click on filter option
 
-    await page.waitForSelector('.places__found', { state: 'attached' }); // wait for page to reload
-    await page.waitForSelector('.cities__card', { state: 'attached' }); // wait for cards to load
+    await page.locator('.places__found').first().waitFor(); // wait for page to reload
+    await page.locator('.cities__card').first().waitFor(); // wait for cards to load
 
     const cardElements = await page.locator('.cities__card').all(); // get cards
     expect(cardElements.length).toBeGreaterThan(0); // make sure there's at least 1
@@ -56,8 +56,8 @@ test.describe('Filter Cards by Price and Rating', () => {
     const filters = await page.locator('.places__option').all();
     await filters[3].click(); // click on filter option
 
-    await page.waitForSelector('.places__found', { state: 'attached' }); // wait for page to reload
-    await page.waitForSelector('.cities__card', { state: 'attached' }); // wait for cards to load
+    await page.locator('.places__found').first().waitFor(); // wait for page to reload
+    await page.locator('.cities__card').first().waitFor(); // wait for cards to load
 
     const cardElements = await page.locator('.cities__card').all(); // get cards
     expect(cardElements.length).toBeGreaterThan(0); // make sure there's at least 1
@@ -78,7 +78,7 @@ test.describe('Filter Cards by City', () => {
   test('should filter cards by city correctly', async ({ page }) => {
     await page.goto('http://localhost:5173');
 
-    await page.waitForSelector('.cities__card'); // wait for cards to load
+    await page.locator('.cities__card').first().waitFor(); // wait for cards to load
 
     const locations = await page.locator('.locations__item-link').all(); // get tabs with cities
     for (const location of locations) {
@@ -86,8 +86,8 @@ test.describe('Filter Cards by City', () => {
 
       await location.click(); // click the element
 
-      await page.waitForSelector('.places__found', { state: 'attached' }); // wait for page to reload
-      await page.waitForSelector('.cities__card', { state: 'attached' }); // wait for cards to reload
+      await page.locator('.places__found').first().waitFor(); // wait for page to reload
+      await page.locator('.cities__card').first().waitFor(); // wait for cards to reload
 
       const cardElements = await page.locator('.cities__card').all(); // get cards
       expect(cardElements.length).toBeGreaterThan(0); // make sure there's at least 1

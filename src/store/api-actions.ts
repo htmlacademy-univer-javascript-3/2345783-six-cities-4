@@ -75,6 +75,7 @@ export const loginAction = createAsyncThunk<string, AuthData, {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(redirectToRoute(AppRoute.Root));
+    dispatch(fetchOffersAction());
     saveUserEmail(data.email);
     return data.email;
   },
