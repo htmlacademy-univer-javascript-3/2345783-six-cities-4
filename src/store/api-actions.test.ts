@@ -21,7 +21,14 @@ describe('Async actions', () => {
   beforeEach(() => {
     store = mockStoreCreator({ USER: {
       authorizationStatus: '',
-      userEmail: '' },
+      userInfo: {
+        id: 3,
+        email: 'alex@gmail.com',
+        token: 'token',
+        name: 'Alex',
+        avatarUrl: '../../../markup/img/avatar-max.jpg',
+        isPro: false
+      }, },
     PAGE: {
       currentOfferId: '',
       sortType: SortingTypes.Popular
