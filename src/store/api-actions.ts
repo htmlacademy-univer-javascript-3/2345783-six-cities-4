@@ -65,7 +65,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const loginAction = createAsyncThunk<string, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -77,7 +77,7 @@ export const loginAction = createAsyncThunk<string, AuthData, {
     dispatch(redirectToRoute(AppRoute.Root));
     dispatch(fetchOffersAction());
     saveUserEmail(data.email);
-    return data.email;
+    return data;
   },
 );
 

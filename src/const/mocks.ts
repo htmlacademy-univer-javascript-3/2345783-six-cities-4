@@ -187,7 +187,14 @@ export const makeFakeReviewsList = (): ReviewType[] => ([{
 export const makeFakeStore = (authStat: string, initialState?: Partial<State>): State => ({
   USER: {
     authorizationStatus: authStat,
-    userEmail: '' },
+    userInfo: {
+      id: 3,
+      email: 'alex@gmail.com',
+      token: 'token',
+      name: 'Alex',
+      avatarUrl: '../../../markup/img/avatar-max.jpg',
+      isPro: false
+    }, },
   PAGE: {
     currentOfferId: '',
     sortType: SortingTypes.Popular
