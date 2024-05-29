@@ -33,50 +33,33 @@ test.describe('Favorites', () => {
         (await page.locator('.header__favorite-count').textContent()) || '0'
       );
 
-      const isFavoriteSelected = async () => {
-        const isFavoriteHidden = await page
-          .locator('.place-card__bookmark-button--active')
-          .first().isHidden();
-        return !isFavoriteHidden;
-      };
-
     await page.goto('http://localhost:5173'); // load page
     await page.goto('http://localhost:5173/login'); // go to login page
 
     // fill in the form
-    await page.fill('input[name="email"]', 'email@gmail.com');
+    await page.fill('input[name="email"]', 'email2@gmail.com');
     await page.fill('input[name="password"]', 'passwrd123');
 
     // submit the form
     await page.click('button[type="submit"]');
 
     await page.waitForURL('http://localhost:5173');
-    await page.waitForTimeout(1000);
+    await page.waitForSelector('.cities__card'); // load cards
 
     const initialFavoritesCount = await getFavoritesCount();
-    const wasFavorite = await isFavoriteSelected();
 
-    const favoriteButton = await page.locator('.place-card__bookmark-button').all();
-
-    // click the button
-    await favoriteButton[0].click();
+    const addToFavoritesButton = await page.locator('.place-card__bookmark-button').all();
+    await addToFavoritesButton[0].click(); // add offer to favorite
     //wait for server response
-    page.waitForResponse(
-      (resp) => 
-        resp.url().includes('/favorite') && 
-        resp.status() === (wasFavorite ? 200 : 201)
-    );
-    await page.waitForTimeout(1000);
+    await page.waitForResponse((resp) => resp.url().includes(`/six-cities/favorite/`)
+         && resp.status() === 201);
+    await page.waitForTimeout(100);
+    expect(await getFavoritesCount()).toBe(initialFavoritesCount + 1);
 
-    const isFavorite = await isFavoriteSelected();
-    const newFavoritesCount = await getFavoritesCount();
-
-    if (wasFavorite) {
-      expect(isFavorite).toBeFalsy();
-      expect(newFavoritesCount).toEqual(initialFavoritesCount - 1);
-    } else {
-      expect(isFavorite).toBeTruthy();
-      expect(newFavoritesCount).toEqual(initialFavoritesCount + 1);
-    }
+    await addToFavoritesButton[0].click(); // remove offer from favorite
+    //wait for server response
+    await page.waitForResponse((resp) => resp.url().includes(`/six-cities/favorite/`) && resp.status() === 200);
+    await page.waitForTimeout(100);
+    expect(await getFavoritesCount()).toBe(initialFavoritesCount);
   });
 });
