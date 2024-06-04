@@ -37,7 +37,7 @@ test.describe('Favorites', () => {
     await page.goto('http://localhost:5173/login'); // go to login page
 
     // fill in the form
-    await page.fill('input[name="email"]', 'email2@gmail.com');
+    await page.fill('input[name="email"]', 'email413@gmail.com');
     await page.fill('input[name="password"]', 'passwrd123');
 
     // submit the form
