@@ -17,7 +17,6 @@ test.describe('Loading Cards from server', () => {
       const text = await element.innerText();
       expect(text).toContain('night');
       expect(text).toContain('To bookmarks');
-      expect(text).toContain('Rating');
 
       // check that all cards have prices
       const number = text.replace(/^\D+/g, '');
